@@ -1,15 +1,17 @@
 package cu.desoft.desarrollo;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import cu.desoft.desarrollo.rest.UsuarioRepo;
+import cu.desoft.desarrollo.repositorio.UserRepo;
 
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})	
+
+
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})	
 @SpringBootApplication
+@EnableJpaRepositories(basePackageClasses = UserRepo.class)
 public class DesarrolloApplication {
 	
 	
