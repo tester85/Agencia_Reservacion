@@ -36,6 +36,7 @@ public class UserController {
 		return (ResponseEntity<List<User>>) userService.findAllUsers();;
 	}
 	*/
+	// Probando con una lista para obtener los datos en vez de la respuesta HTTP
 	@GetMapping
 	public List<User> getAllUsers(){
 		
@@ -96,87 +97,3 @@ public class UserController {
 	
 
 }
-/*
-@PostMapping(path = "/add") 
-public @ResponseBody String addNewUser() {
-	User n = new User();
-	n.setNombre("Pepe");
-	n.setEmail("pepe@desoft.cu");
-	n.setRol(1);	
-	n.setDescripcion("description");
-	n.setPassword("a");
-	try {
-		userRepository.addUsuario(n);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}	
-	return "Saved";
-}
-
-@GetMapping(path = "/all")
-public @ResponseBody Iterable<User> getAllUsers() {
-	// This returns a JSON or XML with the users
-	try {
-		return userRepository.findAll();
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	return null; 
-}
-
-@GetMapping("/error")
-public String error() {
-	return "Error";
-}
-
-@GetMapping("/nombre")
-public String nombre() {
-	return "Daichel";
-}
-
-}
-
- * import java.util.ArrayList; import java.util.List;
- * 
- * import org.springframework.beans.factory.annotation.Autowired; import
- * org.springframework.stereotype.Repository; import
- * org.springframework.web.bind.annotation.GetMapping; import
- * org.springframework.web.bind.annotation.PathVariable; import
- * org.springframework.web.bind.annotation.PostMapping; import
- * org.springframework.web.bind.annotation.RequestBody;
- * 
- * import cu.desoft.desarrollo.model.UsuarioEntity; import
- * cu.desoft.desarrollo.service.UsuarioService;
- * 
- * @Repository public class UsuarioController {
- * 
- * @Autowired UsuarioService userservice;
- * 
- * @GetMapping("/nombre") public String nombre() { return "Daichel"; }
- * 
- * @GetMapping("/description") public String description() { return
- * "Probando la descripcion"; }
- * 
- * @PostMapping("/usuario/add") public void addUsers(@RequestBody UsuarioEntity
- * user) { try { userservice.addUsers(user); } catch (Exception e) {
- * e.printStackTrace(); } }
- * 
- * 
- * @GetMapping("/usuario/{id}") public UsuarioEntity
- * getUserById(@PathVariable("id") Integer id) { UsuarioEntity user = null; try
- * { System.out.println("***************  " + id); user =
- * userservice.getUserById(id); } catch (Exception e) { e.printStackTrace(); }
- * return user; }
- * 
- * 
- * @GetMapping(value = "/users") public List<UsuarioEntity> getAllUser() {
- * List<UsuarioEntity> user = new ArrayList<UsuarioEntity>();
- * System.out.println("***************  "); try { user =
- * userservice.getAllUsers(); } catch (Exception e) { e.printStackTrace(); }
- * return user; }
- * 
- * 
- * }
- */

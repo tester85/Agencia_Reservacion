@@ -16,30 +16,3 @@ public interface UserRepo extends CrudRepository<User, Integer> {
 	
 //	User findByUserNameOrEmail(String nombre, String email);
 }
-
-
-/*
-
-public interface userRepository extends JpaRepository<userEntity, Integer> {
-		
-	
-	
-	@Transactional()
-	@Modifying
-	@Query("update user set nombre = ?1 where id= ?2")
-	int modifyById(String name, Integer Id);
-	
-	
-	@Transactional()
-	@Modifying
-	@Query("delete from user where id= ?2")
-	void deleteById(Integer Id);
-	
-	@Query("select u from user u where u.email = ?1")
-	userEntity findByEmail(String email);
-	
-	@Query("select u from user u")
-	List<userEntity> findAll(); 
-	
-}
-*/
