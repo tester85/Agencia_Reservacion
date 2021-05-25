@@ -24,55 +24,56 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	/*@GetMapping
-	public ResponseEntity<List<User>> getAllUsers(){
-		try {
-			userService.findAllUsers();
-			 System.out.println("***************  " );
-		} catch (Exception e) {
-			// TODO Error de conxion
-			e.printStackTrace();
-		}
-		return (ResponseEntity<List<User>>) userService.findAllUsers();;
-	}
-	*/
-	// Probando con una lista para obtener los datos en vez de la respuesta HTTP
 	@GetMapping
-	public List<User> getAllUsers(){
-		
+	public ResponseEntity<List<User>> getAllUsers(){
+		List<User> u = null;		
 		try {
-			return	userService.findAllUsers();
+			u = userService.findAllUsers();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		return null;
-		
+		}		
+		return new ResponseEntity<List<User>>(u,OK);
 	}
+	  
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id){
-		try {
-			userService.getUserById(id);
+		User u = new User(); 
+		try {			
+			u = userService.getUserById(id);
 		} catch (Exception e) {
 			// TODO Error de conxion
 			e.printStackTrace();
 		}
-		return new ResponseEntity<User>(OK);
+		return new ResponseEntity<User>(u,OK);
 	}
-	
+
+	@GetMapping("/find/{nombre}")
+	public ResponseEntity<User> getUserById(@PathVariable("nombre") String nombre){
+		User u = new User(); 
+		try {			
+			u = userService.getUserByNombre(nombre);
+		} catch (Exception e) {
+			// TODO Error de conxion
+			e.printStackTrace();
+		}
+		return new ResponseEntity<User>(u,OK);
+	}
+
+
 	@PostMapping("/add")
-	public ResponseEntity<User> addUser(@RequestBody User u){
+	public ResponseEntity<User> addUser(@RequestBody User u){		 
 		try {
 			userService.addUser(u);
-			 System.out.println("***************  " + u.getDescripcion());
+			System.out.println("***************  " + u.getDescripcion());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return new ResponseEntity<User>(OK);		
 	}
-	
+
 	@PostMapping("/update")
 	public ResponseEntity<User> updateUser(@RequestBody User u){
 		try {
@@ -83,7 +84,7 @@ public class UserController {
 		}
 		return new ResponseEntity<User>(OK);		
 	}
-	
+
 	@PostMapping("/delete/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable("id") Integer id){
 		try {
@@ -94,6 +95,6 @@ public class UserController {
 		}
 		return new ResponseEntity<>(OK);		
 	}
-	
+
 
 }
