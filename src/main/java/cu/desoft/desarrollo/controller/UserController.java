@@ -16,14 +16,14 @@ import cu.desoft.desarrollo.model.User;
 import cu.desoft.desarrollo.service.UserService;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
 	private final UserService userService;
 
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
-
+	
 	@GetMapping
 	public ResponseEntity<List<User>> getAllUsers(){
 		List<User> u = null;		
@@ -34,6 +34,11 @@ public class UserController {
 			e.printStackTrace();
 		}		
 		return new ResponseEntity<List<User>>(u,OK);
+	}
+	
+	@GetMapping("/home")
+	public String ShowHomeUser() {
+		return "Home user page";
 	}
 	  
 	
@@ -49,11 +54,11 @@ public class UserController {
 		return new ResponseEntity<User>(u,OK);
 	}
 
-	@GetMapping("/find/{nombre}")
-	public ResponseEntity<User> getUserById(@PathVariable("nombre") String nombre){
+	@GetMapping("/search/{username}")
+	public ResponseEntity<User> getUserById(@PathVariable("username") String username){
 		User u = new User(); 
 		try {			
-			u = userService.getUserByNombre(nombre);
+			u = userService.getUserByUsername(username);
 		} catch (Exception e) {
 			// TODO Error de conxion
 			e.printStackTrace();
@@ -63,15 +68,16 @@ public class UserController {
 
 
 	@PostMapping("/add")
-	public ResponseEntity<User> addUser(@RequestBody User u){		 
+	public ResponseEntity<User> addUser(@RequestBody User u){
+			User data = u;
 		try {
-			userService.addUser(u);
+			userService.addUser(data);
 			System.out.println("***************  " + u.getDescripcion());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new ResponseEntity<User>(OK);		
+		return new ResponseEntity<User>(u,OK);		
 	}
 
 	@PostMapping("/update")
@@ -82,7 +88,7 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new ResponseEntity<User>(OK);		
+		return new ResponseEntity<User>(u,OK);		
 	}
 
 	@PostMapping("/delete/{id}")

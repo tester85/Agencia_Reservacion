@@ -11,8 +11,9 @@ import cu.desoft.desarrollo.model.User;
 public interface UserRepo extends CrudRepository<User, Integer> {
 	
 	Optional<User> getUserById(Integer id);
-	User getUserByNombre(String nombre);
+	User getUserByUsername(String username);
 	void deleteUserById(Integer id);
 	
 //	User findByUserNameOrEmail(String nombre, String email);
 }
+ 
