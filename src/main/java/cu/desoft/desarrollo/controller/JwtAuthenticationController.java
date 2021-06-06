@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import cu.desoft.desarrollo.service.JwtUserDetailsService;
 
 import cu.desoft.desarrollo.model.JwtRequest;
 import cu.desoft.desarrollo.model.JwtResponse;
-import cu.desoft.desarrollo.model.User;
-import cu.desoft.desarrollo.service.UserService;
+import cu.desoft.desarrollo.model.UserDTO;
+import cu.desoft.desarrollo.service.JwtUserDetailsService;
 import cu.desoft.desarrollo.utility.JwtTokenUtil;
 
 
@@ -35,7 +34,7 @@ public class JwtAuthenticationController {
 	private JwtUserDetailsService userDetailsService;
 	
 	@Autowired
-	private UserService userService;
+	private JwtUserDetailsService userService;
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
@@ -50,7 +49,7 @@ public class JwtAuthenticationController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
+	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
 		return ResponseEntity.ok(userService.save(user));
 	}
 

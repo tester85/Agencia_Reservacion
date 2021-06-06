@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="usuario")
 public class User implements Serializable {	
@@ -32,6 +34,7 @@ public class User implements Serializable {
 	private String[] rol; // Role_User 1-Admin 2-User
 	
 	@Column(name="password", nullable = false)
+	@JsonIgnore
 	private String password;
 	
 	@Column(name="email", nullable = false)
@@ -65,7 +68,7 @@ public class User implements Serializable {
 	
 	public String getUsername() {
 		return username;
-	}
+	} 
 
 	public void setUsername(String username) {
 		this.username = username;

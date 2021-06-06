@@ -14,7 +14,7 @@ import cu.desoft.desarrollo.repositorio.UserRepo;
 public class DesarrolloApplication {
 		
 	public static void main(String[] args) {
-		SpringApplication.run(DesarrolloApplication.class, "/user/home");
+		SpringApplication.run(DesarrolloApplication.class, "");
 	}
 
 }
